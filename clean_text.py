@@ -1,10 +1,9 @@
 import pickle
 import re
 
-import nltk.data
+import nltk
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
-from sklearn.feature_extraction.text import TfidfVectorizer
 
 stemmer = PorterStemmer()
 
@@ -48,6 +47,8 @@ def classify_msg(msg: str) -> int:
     Returns:
         int: The predicted class label for the message.
     """
+
+    nltk.download('stopwords')
     cleaned_msg = clean_text(msg)
     transformed_msg = tfidf_vectorizer.transform([cleaned_msg]).toarray()
 
