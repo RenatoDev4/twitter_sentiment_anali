@@ -6,7 +6,7 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 
 stemmer = PorterStemmer()
-
+nltk.download('stopwords')
 
 with open("model/modelo_salvo", "rb") as file:
     load_data = pickle.load(file)
@@ -48,7 +48,6 @@ def classify_msg(msg: str) -> int:
         int: The predicted class label for the message.
     """
 
-    nltk.download('stopwords')
     cleaned_msg = clean_text(msg)
     transformed_msg = tfidf_vectorizer.transform([cleaned_msg]).toarray()
 
